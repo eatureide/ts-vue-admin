@@ -4,42 +4,42 @@ import type { FormInstance, FormRules } from 'element-plus'
 
 onMounted(() => { })
 const ruleFormRef = ref<FormInstance>()
+
 const ruleForm = reactive({
     userName: '',
     password: ''
 })
 
 const rules = reactive<FormRules>({
-    userName: {
+    userName: [{
         required: true,
-        message: 'Please select Activity zone',
-        trigger: 'change',
-    },
+        message: '请输入用户名',
+        trigger: 'onBlur',
+    }],
+    password: [{
+        required: true,
+        message: '请输入验证码',
+        trigger: 'onBlur',
+    }]
 })
 
-const submitForm = (formEl: FormInstance | undefined) => {
-    
+const submitForm = async (formEl: FormInstance) => {
+    if (!formEl) return
+    formEl.validate((valid, fields) => {
+        console.log(valid, fields)
+    })
 }
-
 
 </script>
 
 <template>
     <div class="login">
         <el-card class="box-card">
-            <el-form :model="ruleForm" ref="ruleFormRef" label-position="top" :rules="rules">
-                <el-form-item label="输入用户名" :rules="[{
-                    required: true,
-                    message: '请输入用户名',
-                    trigger: 'blur',
-                }]">
+            <el-form :model="ruleForm" ref="ruleFormRef" label-position="top">
+                <el-form-item label="输入用户名" prop="userName" :rules="rules.userName">
                     <el-input v-model="ruleForm.userName" />
                 </el-form-item>
-                <el-form-item label="输入密码" :rules="[{
-                    required: true,
-                    message: '请输入密码',
-                    trigger: 'blur',
-                }]">
+                <el-form-item label="输入密码" prop="password" :rules="rules.password">
                     <el-input v-model="ruleForm.password" />
                 </el-form-item>
                 <el-form-item>
