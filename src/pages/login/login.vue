@@ -50,6 +50,6 @@ const submitForm = async (formEl: FormInstance) => {
     </div>
 </template>
 
-<style lang="less">
+<style lang="less" scoped>
 @import './login.less';
 </style>
