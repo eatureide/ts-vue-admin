@@ -1,10 +1,6 @@
 import { ComponentCustomProperties } from 'vue'
 import { Store } from 'vuex'
-import { StoreType } from '@/store'
-
-interface State {
-    count: number
-}
+import { State } from '@/store'
 
 declare module '@vue/runtime-core' {
     
