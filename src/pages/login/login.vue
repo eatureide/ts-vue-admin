@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import { ref, onMounted, reactive } from 'vue'
 import type { FormInstance, FormRules } from 'element-plus'
+import HelloWorld from '@/components/HelloWorld.vue'
+import Foo from '@/components/Foo'
 
 onMounted(() => { })
 const ruleFormRef = ref<FormInstance>()
@@ -23,7 +25,7 @@ const rules = reactive<FormRules>({
     }]
 })
 
-const submitForm = async (formEl: FormInstance) => {
+const submitForm = async (formEl: FormInstance | undefined) => {
     if (!formEl) return
     formEl.validate((valid, fields) => {
         console.log(valid, fields)
@@ -34,6 +36,8 @@ const submitForm = async (formEl: FormInstance) => {
 
 <template>
     <div class="login">
+        <hello-world msg="hahah" />
+        <Foo msg="123" />
         <el-card class="box-card">
             <el-form :model="ruleForm" ref="ruleFormRef" label-position="top">
                 <el-form-item label="输入用户名" prop="userName" :rules="rules.userName">
