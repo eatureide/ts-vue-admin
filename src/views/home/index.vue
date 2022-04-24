@@ -12,4 +12,9 @@ const store = useStore()
 </script>
 
 <style lang="scss">
+
+
+h1 {
+    color: $color
+}
 </style>
